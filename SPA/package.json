@@ -4,6 +4,10 @@
     "dependencies": {
         "@azure/msal-browser": "^2.30.0",
         "@azure/msal-react": "^1.4.9",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@mui/material": "^5.14.10",
+        "@nivo/geo": "^0.83.0",
         "bootstrap": "^5.2.2",
         "react": "^18.2.0",
         "react-bootstrap": "^2.5.0",

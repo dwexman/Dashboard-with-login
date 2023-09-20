@@ -5,6 +5,9 @@ import { EventType } from '@azure/msal-browser';
 
 import { PageLayout } from './components/PageLayout';
 import { Home } from './pages/Home';
+import { Reportes } from './pages/Reportes';
+import Geography from "./pages/geography";
+
 import { b2cPolicies } from './authConfig';
 import { compareIssuingPolicy } from './utils/claimUtils';
 
@@ -89,6 +92,8 @@ const Pages = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/reportes" element={<Reportes />} />
+            <Route path="/geography" element={<Geography />} />
         </Routes>
     );
 };

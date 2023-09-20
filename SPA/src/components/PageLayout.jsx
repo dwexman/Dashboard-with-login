@@ -7,7 +7,7 @@ export const PageLayout = (props) => {
             <NavigationBar />
             <br />
             <h5>
-                <center>Remora OnFire using MS Authentication Library For React</center>
+                <center>Remora OnFire - Reportes</center>
             </h5>
             <br />
             {props.children}

@@ -11,27 +11,12 @@ export const NavigationBar = () => {
         activeAccount = instance.getActiveAccount();
     }
 
-    const handleLoginPopup = () => {
-        instance
-            .loginPopup({
-                ...loginRequest,
-                redirectUri: '/redirect',
-            })
-            .catch((error) => console.log(error));
-    };
-
     const handleLoginRedirect = () => {
         instance.loginRedirect(loginRequest).catch((error) => console.log(error));
     };
 
     const handleLogoutRedirect = () => {
         instance.logoutRedirect();
-    };
-
-    const handleLogoutPopup = () => {
-        instance.logoutPopup({
-            mainWindowRedirectUri: '/', // redirects the top level app after logout
-        });
     };
 
     const handleProfileEdit = () => {
@@ -50,18 +35,20 @@ export const NavigationBar = () => {
                     <Nav.Link className="navbarButton" href="/">
                         Inicio
                     </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/Reportes">
+                        Reportes
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/Geography">
+                        Geografía
+                    </Nav.Link>
                     <div className="collapse navbar-collapse justify-content-end">
-                        <Button variant="info" onClick={handleProfileEdit} className="profileButton">
-                            Modificar Pérfil
-                        </Button>
-
                         <DropdownButton
                             variant="warning"
-                            drop="start"
+                            drop="down"
                             title={activeAccount && activeAccount.username ? activeAccount.username : 'Desconocido'}
                         >
-                            <Dropdown.Item as="button" onClick={handleLogoutPopup}>
-                                Do alguna cosa
+                            <Dropdown.Item as="button" onClick={handleProfileEdit}>
+                            Modificar Pérfil
                             </Dropdown.Item>
                             <Dropdown.Item as="button" onClick={handleLogoutRedirect}>
                                 Sign out

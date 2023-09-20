@@ -15,14 +15,22 @@ export const Home = () => {
     return (
         <>
             <AuthenticatedTemplate>
-                {activeAccount ? (
-                    <Container>
+                <Container>
+                    { activeAccount ? 
+                        ( <h2><center>Bienvenido {activeAccount.name}</center></h2> ) 
+                        : null 
+                    }
+                </Container>
+                { activeAccount && activeAccount.username === 'jacuevasp@gmail.com' ? 
+                    ( <Container>
                         <IdTokenData idTokenClaims={activeAccount.idTokenClaims} />
-                    </Container>
-                ) : null }
+                      </Container> 
+                    ) 
+                    : null 
+                }
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
-                <h2><center>There's nobody home.</center></h2>
+                <h2><center>There is nobody home.</center></h2>
             </UnauthenticatedTemplate>
         </>
     );
