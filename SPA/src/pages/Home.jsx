@@ -16,10 +16,10 @@ export const Home = () => {
         <>
             <AuthenticatedTemplate>
                 <Container>
-                    { activeAccount ? 
-                        ( <h2><center>Bienvenido {activeAccount.name}</center></h2> ) 
-                        : null 
-                    }
+                { activeAccount ? 
+                    ( <h2><center>Bienvenido {activeAccount.name}</center></h2> ) 
+                    : null 
+                }
                 </Container>
                 { activeAccount && activeAccount.username === 'jacuevasp@gmail.com' ? 
                     ( <Container>

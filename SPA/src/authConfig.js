@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import { LogLevel } from '@azure/msal-browser';
+import { LogLevel } from "@azure/msal-browser";
 
 /**
  * Enter here the user flows and custom policies for your B2C application
@@ -30,10 +30,11 @@ export const b2cPolicies = {
     authorityDomain: 'remoraonfire.b2clogin.com',
 };
 
+
 /**
- * Configuration object to be passed to MSAL instance on creation.
+ * Configuration object to be passed to MSAL instance on creation. 
  * For a full list of MSAL.js configuration parameters, visit:
- * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md
+ * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 export const msalConfig = {
     auth: {
@@ -75,23 +76,26 @@ export const msalConfig = {
     },
 };
 
+/**
+ * Add here the endpoints and scopes when obtaining an access token for protected web APIs. For more information, see:
+ * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
+ */
+export const protectedResources = {
+    apiTodoList: {
+        endpoint: 'http://localhost:5000/api/todolist',
+        scopes: {
+            read: ['https://remoraonfire.onmicrosoft.com/9c423f16-f2b3-415f-b565-da0156a83e57/ToDoList.Read'],
+            write: ['https://remoraonfire.onmicrosoft.com/9c423f16-f2b3-415f-b565-da0156a83e57/ToDoList.ReadWrite'],
+        },
+    },
+};
 
 /**
  * Scopes you add here will be prompted for user consent during sign-in.
  * By default, MSAL.js will add OIDC scopes (openid, profile, email) to any login request.
- * For more information about OIDC scopes, visit:
+ * For more information about OIDC scopes, visit: 
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [],
-};
-
-
-/**
- * An optional silentRequest object can be used to achieve silent SSO
- * between applications by providing a "login_hint" property.
- */
-export const silentRequest = {
-    scopes: ["openid", "profile"],
-    loginHint: "example@domain.net"
+    scopes: [...protectedResources.apiTodoList.scopes.read, ...protectedResources.apiTodoList.scopes.write],
 };

@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-
 import { BrowserRouter } from 'react-router-dom';
+
 import { PublicClientApplication, EventType } from '@azure/msal-browser';
 import { msalConfig } from './authConfig';
+
+import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';

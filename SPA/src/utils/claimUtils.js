@@ -8,6 +8,7 @@ export const createClaimsTable = (claims) => {
     let index = 0;
 
     Object.keys(claims).forEach((key) => {
+        if (typeof claims[key] !== 'string' && typeof claims[key] !== 'number') return;
         switch (key) {
             case 'aud':
                 populateClaim(
@@ -63,7 +64,7 @@ export const createClaimsTable = (claims) => {
                 populateClaim(
                     key,
                     claims[key],
-                    "The name claim provides a human-readable value that identifies the subject of the token. The value isn't guaranteed to be unique, it can be changed, and it's designed to be used only for display purposes. The profile scope is required to receive this claim.",
+                    "The principal about which the token asserts information, such as the user of an application. This value is immutable and can't be reassigned or reused. It can be used to perform authorization checks safely, such as when the token is used to access a resource. By default, the subject claim is populated with the object ID of the user in the directory",
                     index,
                     claimsObj
                 );
@@ -147,7 +148,7 @@ export const createClaimsTable = (claims) => {
                 populateClaim(
                     key,
                     claims[key],
-                    "The principal about which the token asserts information, such as the user of an application. This value is immutable and can't be reassigned or reused. It can be used to perform authorization checks safely, such as when the token is used to access a resource. By default, the subject claim is populated with the object ID of the user in the directory",
+                    'The sub claim is a pairwise identifier - it is unique to a particular application ID. If a single user signs into two different apps using two different client IDs, those apps will receive two different values for the subject claim.',
                     index,
                     claimsObj
                 );
@@ -163,7 +164,7 @@ export const createClaimsTable = (claims) => {
                 );
                 index++;
                 break;
-            case 'auth_time':
+            case "auth_time":
                 populateClaim(
                     key,
                     claims[key],
@@ -173,7 +174,7 @@ export const createClaimsTable = (claims) => {
                 );
                 index++;
                 break;
-            case 'at_hash':
+            case "at_hash":
                 populateClaim(
                     key,
                     claims[key],

@@ -35,10 +35,13 @@ export const NavigationBar = () => {
                     <Nav.Link className="navbarButton" href="/">
                         Inicio
                     </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/Reportes">
+                    <Nav.Link className="navbarButton" href="/reportes">
                         Reportes
                     </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/Geography">
+                    <Nav.Link className="navbarButton" href="/config">
+                        Configuración
+                    </Nav.Link>
+                    <Nav.Link className="navbarButton" href="/geography">
                         Geografía
                     </Nav.Link>
                     <div className="collapse navbar-collapse justify-content-end">
