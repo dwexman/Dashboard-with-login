@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useState } from "react";
 import { Route, Routes } from 'react-router-dom';
 import { MsalProvider, useMsal } from '@azure/msal-react';
 import { EventType } from '@azure/msal-browser';
@@ -14,6 +15,24 @@ import { b2cPolicies, protectedResources } from './authConfig';
 import { compareIssuingPolicy } from './utils/claimUtils';
 
 import './styles/App.css';
+
+import Topbar from "./pages/global/TopBar";
+import Sidebar from "./pages/global/SideBar";
+import Dashboard from "./pages/dashboard";
+import Team from "./pages/team";
+import Invoices from "./pages/invoices";
+import Contacts from "./pages/contacts";
+import Bar from "./pages/bar";
+import Form from "./pages/form";
+import Line from "./pages/line";
+import Pie from "./pages/pie";
+import FAQ from "./pages/faq";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./styles/theme";
+import Calendar from "./pages/calendar";
+import { tokens } from "./styles/theme";
+import { NavigationBar } from './components/NavigationBar';
+
 
 const Pages = () => {
     /**
@@ -95,13 +114,31 @@ const Pages = () => {
         // eslint-disable-next-line
     }, [instance]);
 
+    const [theme, colorMode] = useMode();
+    const [isSidebar, setIsSidebar] = useState(true);
+      
+
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/reportes" element={<Reportes />} />
-            <Route path="/config" element={<ConfigWidgets />} />
-            <Route path="/geography" element={<Geography />} />
-        </Routes>
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <div className="app">
+             <Sidebar isSidebar={isSidebar} />
+                        <main className="content">
+                            <Topbar setIsSidebar={setIsSidebar} />
+                <Routes>
+                    <Route path="/dashboard" element={<Home />} />
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/reportes" element={<Reportes />} />
+                    <Route path="/config" element={<ConfigWidgets />} />
+                    <Route path="/geography" element={<Geography />} />
+                    <Route path="/bar" element={<Bar />} />
+                    <Route path="/calendario" element={<Calendar />} />
+                </Routes>
+                </main>
+               </div>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
     );
 };
 
@@ -112,12 +149,30 @@ const Pages = () => {
  * PublicClientApplication instance via context as well as all hooks and components provided by msal-react. For more, visit:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/getting-started.md
  */
-const  App = ({ instance }) => {
+const App = ({ instance }) => {
+    const [theme, colorMode] = useMode();
+    const [isSidebar, setIsSidebar] = useState(true);
     return (
         <MsalProvider instance={instance}>
-            <PageLayout>
-              <Pages />
-            </PageLayout>
+            <ColorModeContext.Provider value={colorMode}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+             
+                        <main className="content">
+                            <Topbar setIsSidebar={setIsSidebar} />
+                  
+                            <PageLayout>
+                            <Dashboard />
+                           
+                              
+                            </PageLayout>
+                            </main>
+                    
+                      
+                        
+                   
+                </ThemeProvider>
+            </ColorModeContext.Provider>
         </MsalProvider>
     );
 }

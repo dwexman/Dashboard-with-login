@@ -1,18 +1,25 @@
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { NavigationBar } from './NavigationBar';
+import Sidebar from '../pages/global/SideBar';
+import Dashboard from '../pages/dashboard';
+import { useState } from 'react';
+import { ColorModeContext, useMode } from "../styles/theme";
+
+
+
 
 export const PageLayout = (props) => {
     return (
         <>
             <NavigationBar />
-            <br />
-            <h5>
-                <center>Remora OnFire - Reportes</center>
-            </h5>
-            <br />
+    
+        
+           
             {props.children}
             <br />
-            <AuthenticatedTemplate>
+
+            <AuthenticatedTemplate> 
+
                 <footer>
                     <center>
                         How did we do?
@@ -25,8 +32,12 @@ export const PageLayout = (props) => {
                             Share your experience!
                         </a>
                     </center>
+                    
                 </footer>
+                
+                
             </AuthenticatedTemplate>
+            
         </>
     );
 };

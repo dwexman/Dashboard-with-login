@@ -3,6 +3,7 @@ import { useMsal } from '@azure/msal-react';
 import { Container } from 'react-bootstrap';
 import { IdTokenData } from '../components/DataDisplay';
 
+
 /***
  * Component to detail ID token claims with a description for each claim. For more details on ID token claims, please check the following links:
  * ID token Claims: https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens#claims-in-an-id-token
